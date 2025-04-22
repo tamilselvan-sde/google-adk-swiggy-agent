@@ -4,15 +4,38 @@ import pandas as pd
 import os
 
 class FoodDataHandler:
+    """
+    A class to handle food-related data operations from CSV file.
+    
+    This class manages the loading and processing of food menu data,
+    including details like food names, prices, offers, and restaurants.
+    """
+    
     def __init__(self):
         self.csv_path = os.path.join(os.path.dirname(__file__), 'data', 'food_data.csv')
         self.food_data = pd.read_csv(self.csv_path)
 
     def get_food_info(self):
+        """
+        Retrieves formatted food menu information.
+        
+        Returns:
+            str: A formatted string containing food names, types, prices,
+                 offers, and restaurant information.
+        """
         menu_info = self.food_data[['food_name', 'type', 'price', 'offer', 'restaurant']].to_string()
         return menu_info
 
 def create_agent():
+    """
+    Creates and configures a Swiggy delivery agent.
+    
+    This function initializes an AI agent that can handle food orders,
+    provide recommendations, and assist with delivery tracking.
+    
+    Returns:
+        Agent: Configured Swiggy delivery agent instance.
+    """
     AGENT_MODEL = "ollama/llama3:8b"
     food_handler = FoodDataHandler()
     food_info = food_handler.get_food_info()
