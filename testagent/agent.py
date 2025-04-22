@@ -2,6 +2,7 @@ from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
 import pandas as pd
 import os
+from typing import str
 
 class FoodDataHandler:
     """
@@ -11,11 +12,11 @@ class FoodDataHandler:
     including details like food names, prices, offers, and restaurants.
     """
     
-    def __init__(self):
-        self.csv_path = os.path.join(os.path.dirname(__file__), 'data', 'food_data.csv')
-        self.food_data = pd.read_csv(self.csv_path)
+    def __init__(self) -> None:
+        self.csv_path: str = os.path.join(os.path.dirname(__file__), 'data', 'food_data.csv')
+        self.food_data: pd.DataFrame = pd.read_csv(self.csv_path)
 
-    def get_food_info(self):
+    def get_food_info(self) -> str:
         """
         Retrieves formatted food menu information.
         
@@ -23,10 +24,10 @@ class FoodDataHandler:
             str: A formatted string containing food names, types, prices,
                  offers, and restaurant information.
         """
-        menu_info = self.food_data[['food_name', 'type', 'price', 'offer', 'restaurant']].to_string()
+        menu_info: str = self.food_data[['food_name', 'type', 'price', 'offer', 'restaurant']].to_string()
         return menu_info
 
-def create_agent():
+def create_agent() -> Agent:
     """
     Creates and configures a Swiggy delivery agent.
     
@@ -36,9 +37,9 @@ def create_agent():
     Returns:
         Agent: Configured Swiggy delivery agent instance.
     """
-    AGENT_MODEL = "ollama/llama3:8b"
-    food_handler = FoodDataHandler()
-    food_info = food_handler.get_food_info()
+    AGENT_MODEL: str = "ollama/llama3:8b"
+    food_handler: FoodDataHandler = FoodDataHandler()
+    food_info: str = food_handler.get_food_info()
 
     return Agent(
         name = "swiggy_agent",
@@ -54,4 +55,4 @@ Use this information to assist customers with their food orders, provide accurat
     )
 
 # Initialize the agent
-root_agent = create_agent()  # Changed: renamed 'agent' to 'root_agent'
+root_agent: Agent = create_agent()  # Changed: renamed 'agent' to 'root_agent'
