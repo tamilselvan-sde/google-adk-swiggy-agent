@@ -2,7 +2,7 @@ from google.adk.agents import Agent
 from google.adk.models.lite_llm import LiteLlm
 import pandas as pd
 import os
-from typing import str
+from typing import str, Optional, List, Dict, Any
 
 class FoodDataHandler:
     """
@@ -55,4 +55,4 @@ Use this information to assist customers with their food orders, provide accurat
     )
 
 # Initialize the agent
-root_agent: Agent = create_agent()  # Changed: renamed 'agent' to 'root_agent'
+root_agent: Agent = create_agent()
