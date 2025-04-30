@@ -5,3 +5,8 @@ This package contains the AI-powered Swiggy delivery assistant built using Googl
 and LiteLLM with LLaMA3 for intelligent food ordering and recommendations.
 """
 from . import agent
+
+def initialize() -> None:
+    """Initialize the Swiggy delivery agent package.
+    """
+    pass
