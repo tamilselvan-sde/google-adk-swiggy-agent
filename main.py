@@ -1,4 +1,4 @@
-def main():
+def main() -> None:
     """Main entry point for the Swiggy delivery assistant.
     
     This function initializes and runs the AI-powered delivery assistant
